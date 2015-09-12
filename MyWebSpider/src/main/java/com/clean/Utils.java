@@ -2,11 +2,15 @@ package com.clean;
 
 import java.io.*;
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by tonghui on 2015/9/12.
  */
 public class Utils {
+
+    private static ExecutorService executor;
 
     private static String basePath = "F:\\temp";
 
@@ -52,5 +56,15 @@ public class Utils {
         } catch (Exception e) {
 
         }
+    }
+
+    public static ExecutorService getThreadPool() {
+        if (executor != null) {
+            return executor;
+        }
+
+        executor = Executors.newFixedThreadPool(30);
+        return executor;
+
     }
 }
